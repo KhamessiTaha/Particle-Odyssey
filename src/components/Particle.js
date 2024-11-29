@@ -79,25 +79,24 @@ const Particle = ({
 
     // Create a physics-enabled box with NaN prevention
     const [ref] = useBox(() => {
-        // Ensure position is valid
-        const safePosition = normalizedPosition.map(
-            coord => !isNaN(coord) ? coord : 0
-        );
-
-        return {
-            mass: particleProperties.density || 1,
-            position: safePosition,
-            args: [
-                !isNaN(particleSize) ? particleSize : 0.1, 
-                !isNaN(particleSize) ? particleSize : 0.1, 
-                !isNaN(particleSize) ? particleSize : 0.1
-            ],
-            material: {
-                friction: 0.5,
-                restitution: 0.3, // Bounciness
-            },
-        };
-    }, [normalizedPosition, particleSize]);
+      const safePosition = normalizedPosition.map(
+          coord => !isNaN(coord) ? coord : 0
+      );
+  
+      return {
+          mass: particleProperties.density || 1,
+          position: safePosition,
+          args: [
+              !isNaN(particleSize) ? particleSize : 0.1, 
+              !isNaN(particleSize) ? particleSize : 0.1, 
+              !isNaN(particleSize) ? particleSize : 0.1
+          ],
+          material: {
+              friction: 0.5,
+              restitution: 0.3,
+          },
+      };
+  });
 
     // Compute color dynamically based on temperature
     const computeColor = () => {
