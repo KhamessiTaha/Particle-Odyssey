@@ -34,7 +34,12 @@ const SandboxPage = () => {
       <div className="flex-grow relative">
         <Canvas 
           ref={canvasRef}
-          camera={{ position: [0, 5, 10], fov: 45 }}
+          camera={{ 
+            position: [0, 5, 10], // Adjusted to give a good view
+            fov: 45,
+            near: 0.1,  // Near clipping plane
+            far: 1000   // Far clipping plane
+          }}
           shadows
         >
           <Physics gravity={[0, simulationSettings.gravity, 0]}>
